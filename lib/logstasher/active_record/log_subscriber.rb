@@ -20,6 +20,7 @@ module LogStasher
 
       def logstash_event(event)
         data = event.payload
+        payload[:binds] = [] if payload[:binds].present?
 
         return if 'SCHEMA' == data[:name]
 
