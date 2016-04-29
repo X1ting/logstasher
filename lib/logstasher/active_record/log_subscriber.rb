@@ -20,7 +20,7 @@ module LogStasher
 
       def logstash_event(event)
         data = event.payload
-        data[:binds] = [] if data[:binds].present?
+        data[:binds] = data[:binds].to_json
 
         return if 'SCHEMA' == data[:name]
 
