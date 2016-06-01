@@ -20,7 +20,7 @@ module LogStasher
 
       def logstash_event(event)
         data = event.payload
-        data[:binds] = data[:binds].to_json
+        data[:binds] = data[:binds].to_json.encode('utf-8', :invalid => :replace, :undef => :replace, :replace => '_')
 
         return if 'SCHEMA' == data[:name]
 
